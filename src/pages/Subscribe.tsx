@@ -1,8 +1,10 @@
-import { useMutation } from "@apollo/client";
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../components/Logo";
 import { useCreateSubscriberMutation } from "../graphql/generated";
+
+import reactIcon from '/src/assets/react-icon.png'
+import code from '/src/assets/code.png'
 
 export function Subscribe() {
   const navigation = useNavigate()
@@ -14,20 +16,16 @@ export function Subscribe() {
 
   async function handleSubscribe(event: FormEvent) {
     event.preventDefault();
-
     try {
-
       await createSubscriber({
         variables: {
           name,
           email
         }
       })
-
       navigation('event')
-
     } catch (e) {
-
+      console.log(e);
     } finally {
 
     }
@@ -35,7 +33,7 @@ export function Subscribe() {
 
   return (
     <div className="min-h-full bg-blur bg-cover bg-no-repeat flex flex-col items-center w-full">
-      <img src="/src/assets/react-icon.png" alt="" className="absolute z-[-1]" />
+      <img src={reactIcon} alt="" className="absolute z-[-1]" />
 
       <div className="w-full max-w-[1100px] flex items-center justify-between mt-20 mx-auto">
         <div className="max-w-[640px]">
@@ -71,7 +69,7 @@ export function Subscribe() {
         </div>
       </div>
 
-      <img src="/src/assets/code.png" className="mt-10" alt="" />
+      <img src={code} className="mt-10" alt="" />
     </div>
   )
 }
