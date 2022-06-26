@@ -1,8 +1,12 @@
-export function App() {
+import { Router } from "./Router";
 
+import { ApolloProvider } from '@apollo/client'
+import { client } from './lib/apollo'
+
+export function App() {
   return (
-    <h1 className="">
-      Hello
-    </h1>
+    <ApolloProvider client={client}>
+    <Router />
+    </ApolloProvider>
   )
 }
